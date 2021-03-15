@@ -46,7 +46,7 @@ test:
     - python -m pip check
     - jupyter kernelspec list
     - jupyter run -h
-    - pytest --pyargs jupyter_client --cov jupyter_client
+    - pytest --pyargs jupyter_client --cov jupyter_client -k "not test_kernelmanager"
 
 about:
   home: https://jupyter.org
