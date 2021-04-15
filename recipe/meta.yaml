@@ -47,6 +47,10 @@ test:
     - python -m pip check
     - jupyter kernelspec list
     - jupyter run -h
+    # NOTE: Some subset of tests may fail on certain CI systems with
+    # ZMQ-related "Too many open files" errors; the way to prevent them --- at
+    # least on *nix-like OSes --- is to run `ulimit -n 1024`, but that's not a
+    # comamnd we should be including in a conda package recipe.
     - pytest --pyargs jupyter_client --cov jupyter_client
 
 about:
