@@ -33,7 +33,7 @@ requirements:
 
 test:
   requires:
-    - async_generator
+#    - async_generator
     - ipykernel
     - ipython
     - mock
