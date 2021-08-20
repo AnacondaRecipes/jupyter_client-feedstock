@@ -34,9 +34,12 @@ requirements:
 test:
   requires:
 #    - async_generator
+    - codecov
+    - coverage
     - ipykernel
     - ipython
     - mock
+    - mypy
     - pip
     - pytest
     - pytest-asyncio
