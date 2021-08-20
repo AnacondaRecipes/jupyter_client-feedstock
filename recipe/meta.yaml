@@ -20,23 +20,28 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.5
+    - python >=3.6.1
   run:
     - jupyter_core >=4.6.0
-    - python >=3.5
+    - python >=3.6.1
     - python-dateutil >=2.1
     - pyzmq >=13
     - tornado >=4.1
     - traitlets
+    - entrypoints
+    - nest-asyncio >=1.5
+    
 
 test:
   requires:
-    - async_generator
+    - codecov
+    - coverage
     - ipykernel
     - ipython
     - mock
     - pip
     - pytest
+    - mypy
     - pytest-asyncio
     - pytest-cov
     - pytest-timeout
