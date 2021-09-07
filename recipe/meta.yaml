@@ -1,4 +1,4 @@
-{% set version = "6.1.12" %}
+{% set version = "7.0.1" %}
 
 package:
   name: jupyter_client
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_client/jupyter_client-{{ version }}.tar.gz
-  sha256: c4bca1d0846186ca8be97f4d2fa6d2bae889cce4892a167ffa1ba6bd1f73e782
+  sha256: 48822a93d9d75daa5fde235c35cf7a92fc979384735962501d4eb60b197fb43a
 
 build:
   number: 0
@@ -20,23 +20,28 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.5
+    - python >=3.6.1
   run:
     - jupyter_core >=4.6.0
-    - python >=3.5
+    - python >=3.6.1
     - python-dateutil >=2.1
     - pyzmq >=13
     - tornado >=4.1
     - traitlets
+    - entrypoints
+    - nest-asyncio >=1.5
+    
 
 test:
   requires:
-    - async_generator
+    - codecov
+    - coverage
     - ipykernel
     - ipython
     - mock
     - pip
     - pytest
+    - mypy
     - pytest-asyncio
     - pytest-cov
     - pytest-timeout
