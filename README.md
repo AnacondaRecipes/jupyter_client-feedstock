@@ -40,6 +40,7 @@ Installing `jupyter_client` from the `conda-forge` channel can be achieved by ad
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `jupyter_client` can be installed with:
@@ -119,6 +120,7 @@ Feedstock Maintainers
 =====================
 
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
+* [@blink1073](https://github.com/blink1073/)
 * [@bollwyvl](https://github.com/bollwyvl/)
 * [@carreau](https://github.com/carreau/)
 * [@davidbrochart](https://github.com/davidbrochart/)
