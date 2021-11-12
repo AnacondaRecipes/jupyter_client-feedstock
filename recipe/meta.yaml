@@ -41,6 +41,8 @@ test:
     - coverage
     - ipykernel
     - ipython
+    # To fix an tests on arm64
+    - ipython_genutils
     - mock
     - pip
     - pytest
