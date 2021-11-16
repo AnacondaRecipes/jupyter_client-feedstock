@@ -53,6 +53,7 @@ test:
   imports:
     - jupyter_client
   commands:
+    - ulimit -n 4096  # [osx64]
     - python -m pip check
     - jupyter kernelspec list
     - jupyter run -h
