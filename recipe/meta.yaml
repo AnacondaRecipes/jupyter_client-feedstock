@@ -53,8 +53,8 @@ test:
   imports:
     - jupyter_client
   commands:
-    # To fix ftests with an error "zmq.error.ZMQError: Too many open files" on osx64 and arm64
-    - ulimit -n 4096
+    # To fix tests with an error "zmq.error.ZMQError: Too many open files" on osx64 and arm64
+    - ulimit -u unlimited
     - python -m pip check
     - jupyter kernelspec list
     - jupyter run -h
