@@ -1,5 +1,8 @@
 @echo on
 
+python -m pip check
+if errorlevel 1 exit 1
+
 jupyter kernelspec list
 if errorlevel 1 exit 1
 

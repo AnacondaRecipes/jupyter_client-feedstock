@@ -52,8 +52,6 @@ test:
     - pytest-timeout
   imports:
     - jupyter_client
-  commands:
-    - python -m pip check
 
 about:
   home: https://jupyter.org
