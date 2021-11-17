@@ -1,4 +1,4 @@
-{% set version = "5.2.4" %}
+{% set version = "7.0.6" %}
 
 package:
   name: jupyter_client
@@ -6,41 +6,62 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_client/jupyter_client-{{ version }}.tar.gz
-  sha256: b5f9cb06105c1d2d30719db5ffb3ea67da60919fb68deaefa583deccd8813551
+  sha256: 8b6e06000eb9399775e0a55c52df6c1be4766666209c22f90c2691ded0e338dc
 
 build:
+  number: 0
   noarch: python
-  number: 3
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
-    - jupyter-kernelspec = jupyter_client.kernelspecapp:KernelSpecApp.launch_instance
-    - jupyter-run = jupyter_client.runapp:main
     - jupyter-kernel = jupyter_client.kernelapp:main
+    - jupyter-kernelspec = jupyter_client.kernelspecapp:KernelSpecApp.launch_instance
+    - jupyter-run = jupyter_client.runapp:RunApp.launch_instance
 
 requirements:
   host:
-    - python
     - pip
-  run:
     - python
-    - traitlets
-    - jupyter_core
+    - setuptools
+    - wheel
+  run:
+    - python >=3.6.1
+    - entrypoints
+    - jupyter_core >=4.6.0
+    - nest-asyncio >=1.5
     - python-dateutil >=2.1
     - pyzmq >=13
     - tornado >=4.1
-
+    - traitlets
+    
 test:
-  commands:
-    - jupyter kernelspec list
-    - jupyter run -h
+  requires:
+    - python <3.10
+    - async_generator
+    - codecov
+    - coverage
+    - ipykernel
+    - ipython
+    # To fix tests on arm64
+    - ipython_genutils
+    - mock
+    - pip
+    - pytest
+    - mypy
+    - pytest-asyncio
+    - pytest-cov
+    - pytest-timeout
   imports:
     - jupyter_client
 
 about:
-  home: http://jupyter.org
-  license: BSD 3-clause
+  home: https://jupyter.org
+  license: BSD-3-Clause
+  license_family: BSD
   license_file: COPYING.md
   summary: jupyter_client contains the reference implementation of the Jupyter protocol.
+  dev_url: https://github.com/jupyter/jupyter_client
+  doc_url: https://jupyter-client.readthedocs.io/en/stable/
+  doc_source_url: https://github.com/jupyter/jupyter_client/tree/master/docs
 
 extra:
   recipe-maintainers:
@@ -50,3 +71,5 @@ extra:
     - ocefpaf
     - carreau
     - SylvainCorlay
+    - bollwyvl
+    - davidbrochart
