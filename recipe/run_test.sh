@@ -10,4 +10,4 @@ jupyter kernelspec list
 
 jupyter run -h
 
-pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail --v
+pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered
