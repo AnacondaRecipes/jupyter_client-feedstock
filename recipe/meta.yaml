@@ -1,11 +1,12 @@
+{% set name = "jupyter_client" %}
 {% set version = "7.1.2" %}
 
 package:
-  name: jupyter_client
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyter_client/jupyter_client-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
   sha256: 4ea61033726c8e579edb55626d8ee2e6bf0a83158ddf3751b8dd46b2c5cd1e96
 
 build:
@@ -61,7 +62,7 @@ about:
   summary: jupyter_client contains the reference implementation of the Jupyter protocol.
   dev_url: https://github.com/jupyter/jupyter_client
   doc_url: https://jupyter-client.readthedocs.io/en/stable/
-  doc_source_url: https://github.com/jupyter/jupyter_client/tree/master/docs
+  doc_source_url: https://github.com/jupyter/{{ name }}/tree/v{{ version }}/docs
 
 extra:
   recipe-maintainers:
