@@ -11,7 +11,6 @@ source:
 
 build:
   skip: True  # [py<37]
-  noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter-kernel = jupyter_client.kernelapp:main
