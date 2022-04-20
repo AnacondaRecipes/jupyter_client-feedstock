@@ -1,5 +1,7 @@
 set -ex
 
+uname -m
+
 python -m pip check
 
 jupyter kernelspec list
