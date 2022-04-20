@@ -21,7 +21,7 @@ elif [ "$(uname -m)" = "ppc64le" ]; then
 # RuntimeError: Kernel died before replying to kernel_info (on s390x)
 elif [ "$(uname -m)" = "s390x" ]; then
     pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail -k "not (test_start_parallel_process_kernels[tcp] \
-    test_signal_kernel_subprocesses[signaltest-_install_kernel-_ShutdownStatus.ShutdownRequest])" 
+    or test_signal_kernel_subprocesses[signaltest-_install_kernel-_ShutdownStatus.ShutdownRequest])" 
 else
     pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail 
 fi
