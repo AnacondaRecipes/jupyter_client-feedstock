@@ -18,7 +18,7 @@ elif [ "$(uname -m)" = "ppc64le" ]; then
     or test_start_parallel_thread_kernels[tcp] \
     or test_start_sequence_process_kernels[tcp] or test_signal_kernel_subprocesses \
     or test_start_new_async_kernel)"
-# RuntimeError: Kernel died before replying to kernel_info (on s390x)
+# Timeout issues or RuntimeError: Kernel died before replying to kernel_info (on s390x)
 elif [ "$(uname -m)" = "s390x" ]; then
     pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail -k "not (test_start_parallel_process_kernels[tcp] \
     or test_signal_kernel_subprocesses[signaltest-_install_kernel-_ShutdownStatus.ShutdownRequest] \
