@@ -26,7 +26,7 @@ elif [ "$(uname -m)" = "s390x" ]; then
     or test_start_sequence_kernels[tcp] or test_start_sequence_kernels[ipc] \
     or test_start_parallel_thread_kernels[tcp] \
     or test_start_sequence_process_kernels[tcp] or test_signal_kernel_subprocesses \
-    or test_start_new_async_kernel or test_shutdown)"
+    or test_start_new_async_kernel or test_shutdown or test_restart_check[tcp])"
 else
     pytest --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail 
 fi
