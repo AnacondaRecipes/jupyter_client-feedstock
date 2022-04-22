@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "7.1.2" %}
+{% set version = "7.2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
-  sha256: 4ea61033726c8e579edb55626d8ee2e6bf0a83158ddf3751b8dd46b2c5cd1e96
+  sha256: 8fdbad344a8baa6a413d86d25bbf87ce21cb2b4aa5a8e0413863b9754eb8eb8a
 
 build:
   number: 0
-  noarch: python
+  skip: True  # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter-kernel = jupyter_client.kernelapp:main
@@ -25,30 +25,29 @@ requirements:
     - setuptools
     - wheel
   run:
-    - python >=3.6.1
+    - python
     - entrypoints
-    - jupyter_core >=4.6.0
-    - nest-asyncio >=1.5
-    - python-dateutil >=2.1
-    - pyzmq >=13
-    - tornado >=4.1
+    - jupyter_core >=4.9.2
+    - nest-asyncio >=1.5.4
+    - python-dateutil >=2.8.2
+    - pyzmq >=22.3
+    - tornado >=6.0
     - traitlets
     
 test:
   requires:
-    - python <3.10
-    - async_generator
     - codecov
     - coverage
-    - ipykernel
+    - ipykernel >=6.5
     - ipython
     # Use ipython_genutils to fix tests on arm64 
-    - ipython_genutils
-    - mock
+    - ipython_genutils  # [osx-arm64]
+    # mypy 0.910 has a missing dependency for python 3.7
+    - mypy <0.910  # [py==37]
+    - mypy  # [not py==37]
     - pip
     - pytest
-    - mypy
-    - pytest-asyncio
+    - pytest-asyncio >=0.18
     - pytest-cov
     - pytest-timeout
   imports:
