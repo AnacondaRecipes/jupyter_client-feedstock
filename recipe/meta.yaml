@@ -23,6 +23,7 @@ requirements:
     - pip
     - python
     - hatchling >=0.25
+    - wheel
   run:
     - python
     - entrypoints
