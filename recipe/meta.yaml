@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "7.2.2" %}
+{% set version = "7.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
-  sha256: 8fdbad344a8baa6a413d86d25bbf87ce21cb2b4aa5a8e0413863b9754eb8eb8a
+  sha256: aa9a6c32054b290374f95f73bb0cae91455c58dfb84f65c8591912b8f65e6d56
 
 build:
   number: 0
@@ -22,15 +22,14 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - hatchling >=0.25
   run:
     - python
     - entrypoints
     - jupyter_core >=4.9.2
     - nest-asyncio >=1.5.4
     - python-dateutil >=2.8.2
-    - pyzmq >=22.3
+    - pyzmq >=23.0
     - tornado >=6.0
     - traitlets
     
