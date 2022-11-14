@@ -22,7 +22,8 @@ requirements:
   host:
     - pip
     - python
-    - hatchling >=0.25
+    - hatchling
+    - setuptools
     - wheel
   run:
     - python
@@ -38,7 +39,7 @@ test:
   requires:
     - codecov
     - coverage
-    - ipykernel >=6.5
+    - ipykernel >=6.12
     - ipython
     # Use ipython_genutils to fix tests on arm64
     - ipython_genutils  # [osx-arm64]
@@ -47,6 +48,7 @@ test:
     - mypy  # [not py==37]
     - pip
     - pytest
+    - pytest-asyncio >=0.18
     - pytest-cov
     - pytest-timeout
   imports:
@@ -57,10 +59,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING.md
-  summary: jupyter_client contains the reference implementation of the Jupyter protocol.
+  summary: Jupyter protocol implementation and client libraries.
+  description: |
+    jupyter_client contains the reference implementation of the Jupyter protocol. It also provides client and kernel management APIs for working with kernels.
+    It also provides the jupyter kernelspec entrypoint for installing kernelspecs for use with Jupyter frontends.
   dev_url: https://github.com/jupyter/jupyter_client
   doc_url: https://jupyter-client.readthedocs.io/en/stable/
-  doc_source_url: https://github.com/jupyter/{{ name }}/tree/v{{ version }}/docs
 
 extra:
   recipe-maintainers:

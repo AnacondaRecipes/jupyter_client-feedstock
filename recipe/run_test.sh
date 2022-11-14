@@ -1,6 +1,8 @@
+#!/bin/bash
+
 set -ex
 
-python -m pip check
+$PYTHON -m pip check
 
 jupyter kernelspec list
 
