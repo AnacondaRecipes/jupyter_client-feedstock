@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "7.4.5" %}
+{% set version = "7.4.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
-  sha256: 63eae06c40e1f2d9afa14447511fddc065c95dea3f2491fda2acccf91221954a
+  sha256: f7f9a9dc3a0ecd223ed6a5a00cf4140a5c252ec72e52d6de370748ed0aa083dd
 
 build:
   number: 0
@@ -43,9 +43,7 @@ test:
     - ipython
     # Use ipython_genutils to fix tests on arm64
     - ipython_genutils  # [osx-arm64]
-    # mypy 0.910 has a missing dependency for python 3.7
-    - mypy <0.910  # [py==37]
-    - mypy  # [not py==37]
+    - mypy
     - pip
     - pytest
     - pytest-asyncio >=0.18
