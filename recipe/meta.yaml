@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "7.3.5" %}
+{% set version = "7.4.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
-  sha256: 3c58466a1b8d55dba0bf3ce0834e4f5b7760baf98d1d73db0add6f19de9ecd1d
+  sha256: 330f6b627e0b4bf2f54a3a0dd9e4a22d2b649c8518168afedce2c96a1ceb2860
 
 build:
   number: 0
@@ -22,7 +22,8 @@ requirements:
   host:
     - pip
     - python
-    - hatchling >=0.25
+    - hatchling
+    - setuptools
     - wheel
   run:
     - python
@@ -38,15 +39,14 @@ test:
   requires:
     - codecov
     - coverage
-    - ipykernel >=6.5
+    - ipykernel >=6.12
     - ipython
     # Use ipython_genutils to fix tests on arm64
     - ipython_genutils  # [osx-arm64]
-    # mypy 0.910 has a missing dependency for python 3.7
-    - mypy <0.910  # [py==37]
-    - mypy  # [not py==37]
+    - mypy
     - pip
     - pytest
+    - pytest-asyncio >=0.18
     - pytest-cov
     - pytest-timeout
   imports:
@@ -57,10 +57,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING.md
-  summary: jupyter_client contains the reference implementation of the Jupyter protocol.
+  summary: Jupyter protocol implementation and client libraries.
+  description: |
+    jupyter_client contains the reference implementation of the Jupyter protocol. It also provides client and kernel management APIs for working with kernels.
+    It also provides the jupyter kernelspec entrypoint for installing kernelspecs for use with Jupyter frontends.
   dev_url: https://github.com/jupyter/jupyter_client
   doc_url: https://jupyter-client.readthedocs.io/en/stable/
-  doc_source_url: https://github.com/jupyter/{{ name }}/tree/v{{ version }}/docs
 
 extra:
   recipe-maintainers:
