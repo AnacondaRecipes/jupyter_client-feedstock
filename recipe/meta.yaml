@@ -41,7 +41,7 @@ test:
     - coverage
     - ipykernel >=6.12
     - ipython
-    # Use ipython_genutils to fix tests on arm64
+    # Use ipython_genutils to fix tests on osx-arm64
     - ipython_genutils  # [osx-arm64]
     - mypy
     - pip
