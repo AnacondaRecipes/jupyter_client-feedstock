@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 109a3c33b62a9cf65aa8325850a0999a795fac155d9de4f7555aef5f310ee35a
 
 build:
@@ -62,7 +62,7 @@ about:
     jupyter_client contains the reference implementation of the Jupyter protocol. It also provides client and kernel management APIs for working with kernels.
     It also provides the jupyter kernelspec entrypoint for installing kernelspecs for use with Jupyter frontends.
   dev_url: https://github.com/jupyter/jupyter_client
-  doc_url: https://jupyter-client.readthedocs.io/en/stable/
+  doc_url: https://jupyter-client.readthedocs.io
 
 extra:
   recipe-maintainers:
