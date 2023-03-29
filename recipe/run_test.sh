@@ -10,8 +10,7 @@ jupyter run -h
 
 if [ "$(uname)" == "Darwin" ]; then
     ulimit -n 4096
-    pytest tests --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail -vv \ 
-    -k "not test_tcp_cinfo"
+    pytest tests --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail -k "not test_tcp_cinfo"
 # Timeout issues on most platforms
 else
     pytest tests --pyargs jupyter_client --cov jupyter_client --cov-report term-missing:skip-covered --no-cov-on-fail -vv \
