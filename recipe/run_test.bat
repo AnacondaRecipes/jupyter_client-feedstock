@@ -9,5 +9,5 @@ if errorlevel 1 exit 1
 jupyter run -h
 if errorlevel 1 exit 1
 
-pytest -vv --pyargs jupyter_client
+pytest tests -vv --pyargs jupyter_client
 if errorlevel 1 exit 1
