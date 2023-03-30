@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "7.4.9" %}
+{% set version = "8.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 52be28e04171f07aed8f20e1616a5a552ab9fee9cbbe6c1896ae170c3880d392
+  sha256: 3fbab64100a0dcac7701b1e0f1a4412f1ccb45546ff2ad9bc4fcbe4e19804811
 
 build:
   number: 0
-  skip: True  # [py<37]
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [py<38]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - jupyter-kernel = jupyter_client.kernelapp:main
     - jupyter-kernelspec = jupyter_client.kernelspecapp:KernelSpecApp.launch_instance
@@ -22,31 +22,31 @@ requirements:
   host:
     - pip
     - python
-    - hatchling
+    - hatchling 1.8
     - setuptools
     - wheel
   run:
     - python
-    - entrypoints
-    - jupyter_core >=4.9.2
-    - nest-asyncio >=1.5.4
+    - importlib_metadata >=4.8.3  # [py<310]
+    - jupyter_core >=4.12,!=5.0.*
     - python-dateutil >=2.8.2
     - pyzmq >=23.0
     - tornado >=6.2
-    - traitlets
+    - traitlets >=5.3
 
 test:
+  source_files:
+    - tests
   requires:
     - codecov
     - coverage
-    - ipykernel >=6.12
-    - ipython
-    # Use ipython_genutils to fix tests on osx-arm64
-    - ipython_genutils  # [osx-arm64]
+    - ipykernel >=6.14
     - mypy
+    - paramiko  # [win]
     - pip
+    - pre-commit
     - pytest
-    - pytest-asyncio >=0.18
+    - pytest-jupyter-client >=0.4.1
     - pytest-cov
     - pytest-timeout
   imports:
@@ -56,7 +56,7 @@ about:
   home: https://jupyter.org
   license: BSD-3-Clause
   license_family: BSD
-  license_file: COPYING.md
+  license_file: LICENSE
   summary: Jupyter protocol implementation and client libraries.
   description: |
     jupyter_client contains the reference implementation of the Jupyter protocol. It also provides client and kernel management APIs for working with kernels.
