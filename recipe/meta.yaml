@@ -1,13 +1,13 @@
 {% set name = "jupyter_client" %}
-{% set version = "8.1.0" %}
+{% set version = "8.5.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3fbab64100a0dcac7701b1e0f1a4412f1ccb45546ff2ad9bc4fcbe4e19804811
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
+  sha256: e8754066510ce456358df363f97eae64b50860f30dc1fe8c6771440db3be9a63
 
 build:
   number: 0
@@ -22,9 +22,7 @@ requirements:
   host:
     - pip
     - python
-    - hatchling 1.8
-    - setuptools
-    - wheel
+    - hatchling >=1.5
   run:
     - python
     - importlib_metadata >=4.8.3  # [py<310]
@@ -38,13 +36,9 @@ test:
   source_files:
     - tests
   requires:
-    - codecov
-    - coverage
     - ipykernel >=6.14
-    - mypy
     - paramiko  # [win]
     - pip
-    - pre-commit
     - pytest
     - pytest-jupyter-client >=0.4.1
     - pytest-cov
