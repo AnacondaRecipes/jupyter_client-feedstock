@@ -64,6 +64,7 @@ extra:
     reason: Dependency for pyautogen
   recipe-maintainers:
     - ianaobi
+    - bkreider
     - jakirkham
     - minrk
     - pelson
