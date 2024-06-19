@@ -1,5 +1,5 @@
 {% set name = "jupyter_client" %}
-{% set version = "8.6.0" %}
+{% set version = "8.6.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jupyter_client-{{ version }}.tar.gz
-  sha256: 0642244bb83b4764ae60d07e010e15f0e2d275ec4e918a8f7b80fbbef3ca60c7
+  sha256: 2bda14d55ee5ba58552a8c53ae43d215ad9868853489213f37da060ced54d8df
 
 build:
   number: 0
@@ -39,7 +39,7 @@ test:
     - ipykernel >=6.14
     - paramiko  # [win]
     - pip
-    - pytest
+    - pytest <8.2.0
     - pytest-jupyter-client >=0.4.1
     - pytest-cov
     - pytest-timeout
