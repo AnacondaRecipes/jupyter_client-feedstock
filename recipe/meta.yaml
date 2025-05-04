@@ -65,7 +65,12 @@ about:
   doc_url: https://jupyter-client.readthedocs.io
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
+    reason: Dependency for pyautogen
   recipe-maintainers:
+    - ianaobi
+    - bkreider
     - jakirkham
     - minrk
     - pelson
