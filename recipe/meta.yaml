@@ -36,11 +36,13 @@ test:
   source_files:
     - tests
   requires:
-    - ipykernel >=6.14
+    # Skip py314 because ipykernel & pytest-jupyter-client are a circular dependency.
+    - ipykernel >=6.14  # [py<314]
+    - ipython
     - paramiko  # [win]
     - pip
     - pytest <8.2.0
-    - pytest-jupyter-client >=0.4.1
+    - pytest-jupyter-client >=0.4.1  # [py<314]
     - pytest-cov
     - pytest-timeout
   imports:
