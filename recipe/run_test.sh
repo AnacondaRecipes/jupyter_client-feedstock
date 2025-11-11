@@ -15,7 +15,7 @@ fi
 PYTHON_MINOR_VERSION=$(python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 echo "PYTHON_MINOR_VERSION: $PYTHON_MINOR_VERSION"
 
-# Workaround for the python 3.14 build-out because ipykernel & pytest-jupyter-client are a circular dependency
+# Workaround for the python 3.14 build-out because ipykernel & pytest-jupyter-client are circular dependencies
 if [ "$PYTHON_MINOR_VERSION" == "3.14" ]; then
     echo "WARNING: Skipping tests for Python 3.14. Remove it when ipykernel & pytest-jupyter-client is available for Python 3.14."
 else
