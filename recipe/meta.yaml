@@ -1,13 +1,18 @@
 {% set name = "jupyter_client" %}
-{% set version = "8.8.0" %}
+{% set version = "8.9.0" %}
+{% set deselect_tests = "" %}
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips"' %}  # [linux]
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]"' %}  # [win]
 
+# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
+# Timeout
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d556811419a4f2d96c869af34e854e3f059b7cc2d6d01a9cd9c85c267691be3e
+  sha256: 23c0c182e1901ffdab96b5a02cb7bc6f0b04524fd7fc43688a14c4ff2308fb77
 
 build:
   number: 0
@@ -31,12 +36,7 @@ requirements:
     - tornado >=6.4.1
     - traitlets >=5.3
     - jupyter_core >=5.1
-
-{% set deselect_tests = "" %}
-# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips" %}  # [linux] 
-# Timeout
-{% set deselect_tests = deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]" %}  # [win] 
+    - typing_extensions >=4.13.0
 
 test:
   source_files:
