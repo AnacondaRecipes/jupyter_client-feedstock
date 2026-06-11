@@ -1,18 +1,13 @@
 {% set name = "jupyter_client" %}
-{% set version = "8.9.0" %}
-{% set deselect_tests = "" %}
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips"' %}  # [linux]
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]"' %}  # [win]
+{% set version = "8.9.1" %}
 
-# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
-# Timeout
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 23c0c182e1901ffdab96b5a02cb7bc6f0b04524fd7fc43688a14c4ff2308fb77
+  sha256: a58f730dd9e728ba16ba1d62ebccf7ffe1ebbdbce4e95cfae941b7321ae1f4fa
 
 build:
   number: 0
@@ -38,6 +33,12 @@ requirements:
     - jupyter_core >=5.1
     - typing_extensions >=4.13.0
 
+{% set deselect_tests = "" %}
+# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips" %}  # [linux] 
+# Timeout
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]" %}  # [win] 
+
 test:
   source_files:
     - tests
@@ -50,13 +51,12 @@ test:
     - jupyter_client.ssh
   requires:
     - pip
-    - pytest <8.2.0
+    - pytest
     - pytest-jupyter-client >=0.4.1  # [py<314]
     - pytest-cov
     - pytest-timeout
     # Skip py314 because ipykernel & pytest-jupyter-client are a circular dependency.
     - ipykernel >=6.14  # [py<314]
-    - ipython
     - paramiko  # [win]
   commands:
     - pip check
@@ -73,7 +73,7 @@ about:
     management APIs for working with kernels. It also provides the jupyter kernelspec entrypoint for installing
     kernelspecs for use with Jupyter frontends.
   dev_url: https://github.com/jupyter/jupyter_client
-  doc_url: https://jupyter-client.readthedocs.io
+  doc_url: https://jupyter-client.readthedocs.io/en/stable/
 
 extra:
   recipe-maintainers:
