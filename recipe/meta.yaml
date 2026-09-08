@@ -1,11 +1,6 @@
 {% set name = "jupyter_client" %}
 {% set version = "8.10.0" %}
-{% set deselect_tests = "" %}
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips"' %}  # [linux]
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]"' %}  # [win]
 
-# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
-# Timeout
 package:
   name: {{ name }}
   version: {{ version }}
@@ -30,12 +25,18 @@ requirements:
     - hatchling >=1.5
   run:
     - python
+    - jupyter_core >=5.1
     - python-dateutil >=2.8.2
     - pyzmq >=25.0
     - tornado >=6.4.1
-    - traitlets >=5.3
-    - jupyter_core >=5.1
     - typing_extensions >=4.13.0
+    - traitlets >=5.3
+
+# FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
+# Timeout
+{% set deselect_tests = "" %}
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips"' %}  # [linux]
+{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]"' %}  # [win]
 
 test:
   source_files:
