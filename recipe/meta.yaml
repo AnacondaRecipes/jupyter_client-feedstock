@@ -34,9 +34,9 @@ requirements:
 
 {% set deselect_tests = "" %}
 # FileNotFoundError: [Errno 2] No such file or directory: '/sbin/ifconfig'
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips"' %}  # [linux]
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_localinterfaces.py::test_load_ips" %}  # [linux]
 # Timeout
-{% set deselect_tests = 'deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]"' %}  # [win]
+{% set deselect_tests = deselect_tests + " --deselect=tests/test_kernelmanager.py::TestParallel::test_start_sequence_kernels[tcp]" %}  # [win]
 
 test:
   source_files:
